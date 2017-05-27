@@ -269,23 +269,7 @@ namespace TA_PengenalanPola
             return result;
         }
 
-
-        public void RUN_PROCESS(string item, string periode, string sawah)
-        {
-            foreach (var x in bulan_periode.bulan_periode_val)
-            {
-                if (periode == x.Key)
-                {
-                    periode = x.Value;
-                }
-            }
-
-            RESULT.val_of_tanaman = Compare_Tanaman(item);
-            RESULT.val_of_periode = Compare_Periode(periode);
-            RESULT.val_of_sawah = Compare_Sawah(sawah);
-            Count_All();
-        }
-
+        //Count All
         public void Count_All()
         {
             RESULT.count_of_tanaman = new float[RESULT.val_of_tanaman.Capacity];
@@ -293,7 +277,7 @@ namespace TA_PengenalanPola
             RESULT.count_of_sawah = new float[RESULT.val_of_sawah.Capacity];
 
             int idx_tanaman = 0;
-            foreach(var x in RESULT.val_of_tanaman)
+            foreach (var x in RESULT.val_of_tanaman)
             {
                 RESULT.count_of_tanaman[idx_tanaman] = (x * (bobot.bobot_val["Jenis Tanaman"]));
                 ++idx_tanaman;
@@ -315,6 +299,21 @@ namespace TA_PengenalanPola
 
         }
 
+        public void RUN_PROCESS(string item, string periode, string sawah)
+        {
+            foreach (var x in bulan_periode.bulan_periode_val)
+            {
+                if (periode == x.Key)
+                {
+                    periode = x.Value;
+                }
+            }
+
+            RESULT.val_of_tanaman = Compare_Tanaman(item);
+            RESULT.val_of_periode = Compare_Periode(periode);
+            RESULT.val_of_sawah = Compare_Sawah(sawah);
+            Count_All();
+        }
 
     }
 }
